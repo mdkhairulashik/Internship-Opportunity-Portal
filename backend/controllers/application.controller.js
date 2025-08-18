@@ -1,6 +1,6 @@
 import { Application } from "../models/application.model.js";
 import { Internship } from "../models/internship.model.js";
-
+//////
 export const applyInternship = async (req, res) => {
     try {
         const userId = req.id;
@@ -19,6 +19,8 @@ export const applyInternship = async (req, res) => {
                 message: "You have already applied for this internship.",
                 success: false
             });
+            
+
         }
 
         //check if the internship exists

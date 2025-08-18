@@ -1,5 +1,7 @@
 import {Company} from "../models/company.model.js";
 
+{/* */}
+
 export const registerCompany = async (req, res) => {
     try {
         const {companyName}= req.body;
@@ -77,6 +79,7 @@ export const getCompanyById = async (req, res) => {
 export const updateCompany = async (req, res) => {
     try {
         const {name, description, website, location} = req.body;
+        
         const file = req.file;
         //cloudinary will come here later
 

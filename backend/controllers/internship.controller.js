@@ -68,7 +68,9 @@ export const getAllInternships = async (req, res) => {
 export const getInternshipById = async (req, res) => {
     try {
         const internshipId = req.params.id;
-        const internship = await Internship.findById(internshipId);
+        const internship = await Internship.findById(internshipId).populate({
+            path:"applications"
+        });
         if (!internship){
             return res.status(404).json({
                 message: "Internships not found.",

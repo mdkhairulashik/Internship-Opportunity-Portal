@@ -63,6 +63,7 @@ export const Signup = () => {
       }
     } catch (error) {
       console.log(error);
+      
     } finally{
       dispatch(setloading(false));
     }

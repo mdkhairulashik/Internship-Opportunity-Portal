@@ -5,13 +5,22 @@ import { Avatar, AvatarImage } from './ui/avatar';
 import { Badge } from './ui/badge';
 import { useNavigate } from 'react-router-dom';
 
-export const Internship = () => {
+
+
+export const Internship = (internship) => {
   const navigate= useNavigate();
-  const internshipId= "jkhgafhdhjuhyghkjl";
+  //const internshipId= "jkhgafhdhjuhyghkjl";
+
+  const daysAgoFunction =(mongodbTime) => {
+    const createdAt = new Date(mongodbTime);
+    const currentTime = new Date();
+    const timeDifference = currentTime - createdAt;
+    return Math.floor(timeDifference/(1000*24*60*60));
+  }
   return (
     <div className="p-6 rounded-lg shadow-lg bg-white border border-gray-200">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">3 days ago</p>
+        <p className="text-sm text-gray-500">{daysAgoFunction(internship?.createdAt)==0 ? "Today" : `${daysAgoFunction(internship?.createdAt)} days ago`}</p>
         <Button variant="outline" className="rounded-full p-2 hover:bg-gray-100 transition-colors">
           <Bookmark />
         </Button>
@@ -25,33 +34,32 @@ export const Internship = () => {
           />
         </Avatar>
         <div>
-          <h4 className="text-lg font-semibold text-gray-800">Company Name</h4>
+          <h4 className="text-lg font-semibold text-gray-800">{internship?.company?.name}</h4>
           <p className="text-sm text-gray-500">Bangladesh</p>
         </div>
       </div>
 
       <div className="mt-4">
-        <h4 className="font-bold text-2xl text-gray-900">Internship Title</h4>
+        <h4 className="font-bold text-2xl text-gray-900">{internship?.title}</h4>
         <p className="text-sm text-gray-600 mt-2">
-          Here we can see the internship description and the skills the company is looking for. This
-          is a great opportunity for students to gain experience.
+          {internship?.description}
         </p>
       </div>
 
       <div className="flex items-center gap-4 mt-4">
         <Badge className="text-blue-700 font-semibold" variant="ghost">
-          2 Positions
+          {internship?.position} Positions
         </Badge>
         <Badge className="text-[#F83002] font-semibold" variant="ghost">
-          Full Time
+          {internship?.internshipTypr}
         </Badge>
         <Badge className="text-[#7209b7] font-semibold" variant="ghost">
-          50K
+          {internship?.salary}K
         </Badge>
       </div>
 
       <div className="flex items-center gap-4 mt-6">
-        <Button onClick={() =>navigate(`description/${internshipId}`)} variant="outline" className="w-32 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
+        <Button onClick={() =>navigate(`description/${internship?._id}`)} variant="outline" className="w-32 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
           Details
         </Button>
         <Button
