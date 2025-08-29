@@ -1,9 +1,11 @@
 import React from 'react'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { Badge } from './ui/badge'
+import { useSelector } from 'react-redux'
 
 export const AppliedInternshipTable = () => {
-  return (
+    const {allAppliedInternships=[]} = useSelector(store=> store.internship);
+    return (
     <div>
         <Table>
             <TableCaption>All Applied Internships of Yours</TableCaption>
@@ -20,12 +22,12 @@ export const AppliedInternshipTable = () => {
             </TableHeader>
             <TableBody>
                 {
-                    [1,2,3,4].map((item,index) => (
-                        <TableRow key={index}>
-                            <TableCell>04-08-2025</TableCell>
-                            <TableCell>Software Engineer</TableCell>
-                            <TableCell>BRAC IT</TableCell>
-                            <TableCell className="text-right"><Badge>Accepted</Badge></TableCell>
+                    allAppliedInternships.length <= 0 ? <span>You haven't applied any internship yet.</span> : allAppliedInternships.map((appliedInternship) => (
+                        <TableRow key={appliedInternship._id}>
+                            <TableCell>{appliedInternship?.createdAt?.split("T")[0]}</TableCell>
+                            <TableCell>{appliedInternship.internship?.title}</TableCell>
+                            <TableCell>{appliedInternship.internship?.company?.name}</TableCell>
+                            <TableCell className="text-right"><Badge className={`${appliedInternship?.status === "rejected" ?  'bg-red-400' : appliedInternship.status === 'pending' ? 'bg-gray=400' : 'bg-green-400' }`}>{appliedInternship.status.toUpperCase()}</Badge></TableCell>
 
 
                         </TableRow>

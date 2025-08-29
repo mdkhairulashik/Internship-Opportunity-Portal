@@ -4,7 +4,11 @@ const internshipSlice = createSlice({
     name: "internship",
     initialState:{
         allInternships:[],
+        allAdminInternships:[],
         singleInternship:null,
+        searchInternshipByText:"",
+        allAppliedInternships:[],
+        searchedQuery:"",
     },
     reducers:{
         setAllInternships: (state, action) => {
@@ -12,8 +16,20 @@ const internshipSlice = createSlice({
         },
         setSingleInternship:(state,action) => {
             state.singleInternship = action.payload;
+        },
+        setAllAdminInternships:(state, action) => {
+            state.allAdminInternships = action.payload;
+        },
+        setSearchInternshipByText:(state, action) => {
+            state.searchInternshipByText = action.payload;
+        },
+        setAllAppliedInternships: (state, action) => {
+            state.allAppliedInternships = action.payload;
+        },
+        setSearchedQuery:(state, action) => {
+            state.searchedQuery = action.payload;
         }
     }
 });
-export const {setAllInternships, setSingleInternship} = internshipSlice.actions;
+export const {setAllInternships, setSingleInternship, setAllAdminInternships,setSearchInternshipByText,setAllAppliedInternships,setSearchedQuery} = internshipSlice.actions;
 export default internshipSlice.reducer;

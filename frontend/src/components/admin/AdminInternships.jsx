@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../shared/Navbar'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { CompaniesTable } from './CompaniesTable'
 import { useNavigate } from 'react-router-dom'
-import useGetAllCompanies from '@/hooks/useGetAllCompanies'
 import { useDispatch } from 'react-redux'
-import { setSearchCompanyByText } from '@/redux/companySlice'
+import AdminInternshipsTable from './AdminInternshipsTable'
+import useGetAllAdminInternships from '@/hooks/useGetAllAdminInternships'
+import { setSearchInternshipByText } from '@/redux/internshipSlice'
 
-export const Companies = () => {
-  useGetAllCompanies();
+export const AdminInternships = () => {
+  useGetAllAdminInternships();
   const [input, setInput] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(()=>{
-    dispatch(setSearchCompanyByText(input));
+    dispatch(setSearchInternshipByText(input));
 
   },[input]);
   return (
@@ -24,17 +24,17 @@ export const Companies = () => {
             <div className='flex items-center justify-between my-5 '>
                 <Input
                 className="w-fit"
-                placeholder = "Filter by name"
+                placeholder = "Filter by name, role"
                 onChange={(e) => setInput(e.target.value)}
                 />
-                <Button onClick={() =>navigate("/admin/companies/create") } className= "text-black">New Company</Button>
+                <Button onClick={() =>navigate("/admin/internships/create") } className= "text-black">New Internships</Button>
 
             </div>
-            <CompaniesTable/>
+            <AdminInternshipsTable/>
            
         </div>
     </div>
   )
 }
 
-export default Companies
+export default AdminInternships

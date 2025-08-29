@@ -89,7 +89,10 @@ export const getInternshipById = async (req, res) => {
 export const getAdminInternships = async (req, res) => {
     try {
         const adminId = req.id;
-        const internships = await Internship.find({created_by: adminId});
+        const internships = await Internship.find({created_by: adminId}).populate({
+            path:'company',
+            createdAt : -1
+        });
         if (!internships){
             return res.status(404).json({
                 message: "Internships not found.",

@@ -9,11 +9,13 @@ import AppliedInternshipTable from './AppliedInternshipTable'
 import UpdateProfileDialog from './UpdateProfileDialog'
 import { useSelector } from 'react-redux'
 import store from '@/redux/store'
+import useGetAppliedInternships from '@/hooks/useGetAppliedInternships'
 
 
 //const skills= ["HTML", "CSS", "REACTJS", "JAVASCRIPT"]
 const isResume = true;
 export const Profile = () => {
+  useGetAppliedInternships();
   const[open, setOpen] = useState(false);
   const {user} = useSelector(store => store.auth);
 

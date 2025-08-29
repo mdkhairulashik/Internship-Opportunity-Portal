@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../shared/Navbar'
 
 import { Input } from '../ui/input'
@@ -24,7 +24,7 @@ export const Login = () => {
     role:""
     
   });
-  const {loading} = useSelector(store => store.auth);
+  const {loading,user} = useSelector(store => store.auth);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -57,6 +57,11 @@ export const Login = () => {
     }
  
   }
+  useEffect(() => {
+    if(user) {
+      navigate("/");
+    }
+  },[])
  
 
 

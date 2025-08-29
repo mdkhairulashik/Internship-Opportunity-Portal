@@ -12,6 +12,13 @@ import InternshipDescription from './components/InternshipDescription'
 import Companies from './components/admin/Companies'
 import CompanyCreate from './components/admin/CompanyCreate'
 import { CompanySetup } from './components/admin/CompanySetup'
+import AdminInternships from './components/admin/AdminInternships';
+import PostInternship from './components/admin/PostInternship'
+import Applicants from './components/admin/Applicants'
+import ProtectedRoute from './components/admin/ProtectedRoute'
+
+
+
 
 
 const appRouter = createBrowserRouter([
@@ -37,7 +44,7 @@ const appRouter = createBrowserRouter([
     element:<Browse/>
   },
   {
-    path: "internships/description/:id",
+    path: "browse/description/:id",
     element:<InternshipDescription/>
   },
   {
@@ -49,16 +56,29 @@ const appRouter = createBrowserRouter([
 
   {
     path:"/admin/companies",
-    element:<Companies/>
+    element:<ProtectedRoute><Companies/></ProtectedRoute>
   },
   {
     path:"/admin/companies/create",
-    element:<CompanyCreate/>
+    element: <ProtectedRoute><CompanyCreate/></ProtectedRoute>
   },
-    {
+  {
     path:"/admin/companies/:id",
-    element:<CompanySetup/>
+    element: <ProtectedRoute><CompanySetup/></ProtectedRoute>
   },
+  {
+    path:"/admin/internships",
+    element: <ProtectedRoute><AdminInternships/></ProtectedRoute>
+  },
+  {
+    path:"/admin/internships/create",
+    element: <ProtectedRoute><PostInternship/></ProtectedRoute>
+  },
+   {
+    path:"/admin/internships/:id/applicants",
+    element: <ProtectedRoute><Applicants/></ProtectedRoute>
+  },
+
 
 
 

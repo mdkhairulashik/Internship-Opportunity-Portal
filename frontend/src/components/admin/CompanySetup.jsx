@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import Navbar from '../shared/Navbar'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 import { Button } from '../ui/button'
@@ -8,10 +8,14 @@ import axios from 'axios'
 import { COMPANY_API_END_POINT } from '@/utils/constant'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
+import { useSelector } from 'react-redux'
+import useGetCompanyById from '@/hooks/useGetCompanyById'
 
 
 
 export const CompanySetup = () => {
+    const params = useParams();
+    useGetCompanyById(params.id);
     const [input, setInput] = useState({
         name:"",
         description:"",
@@ -20,8 +24,9 @@ export const CompanySetup = () => {
         file:null
 
     });
+    const{singleCompany} = useSelector(store => store.company);
     const [loading, setLoading] = useState(false);
-    const params = useParams();
+    
     const navigate = useNavigate();
 
 
@@ -67,9 +72,18 @@ export const CompanySetup = () => {
         } finally{
             setLoading(false);
         }
-
-
     }
+
+    useEffect(()=>{
+        setInput({
+            name:singleCompany.name ||"",
+            description:singleCompany.description || "",
+            website:singleCompany.website || "",
+            location:singleCompany.location || "",
+            file:singleCompany.file || null
+
+        })
+    },[singleCompany]);
 
    
     return (
@@ -82,7 +96,7 @@ export const CompanySetup = () => {
                             <ArrowLeft/>
                             <span>Back</span>
                             </Button>
-                            <h4 className='font-bold text-xl'>Comapny Setup</h4>
+                            <h4 className='font-bold text-xl'>Company Setup</h4>
 
                     </div>
                     <div className='grid grid-cols-2 gap-4'>

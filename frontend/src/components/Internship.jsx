@@ -20,19 +20,22 @@ export const Internship = (internship) => {
   return (
     <div className="p-6 rounded-lg shadow-lg bg-white border border-gray-200">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">{daysAgoFunction(internship?.createdAt)==0 ? "Today" : `${daysAgoFunction(internship?.createdAt)} days ago`}</p>
+        <p className="text-sm text-gray-500">{daysAgoFunction(internship?.createdAt)===0 ? "Today" : `${daysAgoFunction(internship?.createdAt)} days ago`}</p>
         <Button variant="outline" className="rounded-full p-2 hover:bg-gray-100 transition-colors">
           <Bookmark />
         </Button>
       </div>
 
       <div className="flex items-center gap-4 mt-4">
-        <Avatar>
-          <AvatarImage
-            src="https://cdn.pixabay.com/photo/2023/03/06/13/58/logo-7833524_640.png"
-            alt="Company Logo"
-          />
-        </Avatar>
+        <Button className="p-6" variant="outline" size="icon">
+          <Avatar>
+            <AvatarImage
+            src={internship?.company?.logo}
+            />
+          </Avatar>
+
+        </Button>
+        
         <div>
           <h4 className="text-lg font-semibold text-gray-800">{internship?.company?.name}</h4>
           <p className="text-sm text-gray-500">Bangladesh</p>
