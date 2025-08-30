@@ -27,7 +27,7 @@ export const AppliedInternshipTable = () => {
                             <TableCell>{appliedInternship?.createdAt?.split("T")[0]}</TableCell>
                             <TableCell>{appliedInternship.internship?.title}</TableCell>
                             <TableCell>{appliedInternship.internship?.company?.name}</TableCell>
-                            <TableCell className="text-right"><Badge className={`${appliedInternship?.status === "rejected" ?  'bg-red-400' : appliedInternship.status === 'pending' ? 'bg-gray=400' : 'bg-green-400' }`}>{appliedInternship.status.toUpperCase()}</Badge></TableCell>
+                            <TableCell className="text-right"><Badge className={`${appliedInternship?.status === "rejected" ?  'bg-red-400' : appliedInternship.status === 'pending' ? 'bg-gray-400' : 'bg-green-400' }`}>{appliedInternship.status.toUpperCase()}</Badge></TableCell>
 
 
                         </TableRow>

@@ -13,18 +13,26 @@ export const postInternship = async (req, res) => {
 
             })
         };
-        const internship = await Internship.create({
-            title,
-            description,
-            requirements: requirements.split(","),
-            salary: Number(salary),
-            location,
-            internshipType,
-            experienceLevel: experience,
-            position,
-            company: companyId,
-            created_by: userId
-        });
+        // Ensure experienceLevel is a Number (coerce strings like "6 month" -> 6)
+        if (req.body.experienceLevel !== undefined) {
+            let val = req.body.experienceLevel;
+            if (typeof val === 'string') {
+              const m = val.match(/\d+/);
+              val = m ? parseInt(m[0], 10) : Number(val);
+            } else {
+              val = Number(val);
+            }
+
+            if (Number.isNaN(val)) {
+              return res.status(400).json({ success: false, message: 'Invalid experienceLevel. Provide a numeric value.' });
+            }
+
+            req.body.experienceLevel = val;
+          }
+
+        // Continue with creation using req.body
+        const internship = await Internship.create(req.body);
+
         return res.status(201).json({
             message: "New internship post created successfully.",
             internship,

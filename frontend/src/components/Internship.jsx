@@ -5,11 +5,14 @@ import { Avatar, AvatarImage } from './ui/avatar';
 import { Badge } from './ui/badge';
 import { useNavigate } from 'react-router-dom';
 
+const Internship = ({ internship }) => {
+  const navigate = useNavigate();
+  const id = internship?._id;
 
-
-export const Internship = (internship) => {
-  const navigate= useNavigate();
-  //const internshipId= "jkhgafhdhjuhyghkjl";
+  const handleViewDetails = () => {
+    if (!id) return; // guard: do nothing if id missing
+    navigate(`/description/${id}`);
+  };
 
   const daysAgoFunction =(mongodbTime) => {
     const createdAt = new Date(mongodbTime);
@@ -54,7 +57,7 @@ export const Internship = (internship) => {
           {internship?.position} Positions
         </Badge>
         <Badge className="text-[#F83002] font-semibold" variant="ghost">
-          {internship?.internshipTypr}
+          {internship?.internshipType}
         </Badge>
         <Badge className="text-[#7209b7] font-semibold" variant="ghost">
           {internship?.salary}K
@@ -62,12 +65,11 @@ export const Internship = (internship) => {
       </div>
 
       <div className="flex items-center gap-4 mt-6">
-        <Button onClick={() =>navigate(`description/${internship?._id}`)} variant="outline" className="w-32 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
+        <Button onClick={handleViewDetails} disabled={!id} variant="outline" className="w-32 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
           Details
         </Button>
         <Button
-          className="w-32 py-2 text-sm font-medium bg-[#7209b7] text-[#7209b7] hover:bg-[#6a18a1] transition-colors"
-        >
+          className="w-32 py-2 text-sm font-medium bg-[#7209b7] text-[#7209b7] hover:bg-[#6a18a1] transition-colors">
           Save for Later
         </Button>
       </div>

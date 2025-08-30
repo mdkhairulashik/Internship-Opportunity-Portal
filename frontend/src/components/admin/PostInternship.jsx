@@ -26,6 +26,7 @@ export const PostInternship = () => {
         position: 0,
         companyId: ""
     });
+    
     const [loading, setLoading]= useState(false);
     const navigate = useNavigate();
 
@@ -174,9 +175,9 @@ export const PostInternship = () => {
                 
 
                 </div>
-                <Button className="w-full mt-4">Post New Internship</Button>
+                <Button className="w-full mt-4  text-blue-600 ">Post New Internship</Button>
                 {
-                    loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Post New Internship</Button>
+                    loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4 ">Post New Internship</Button>
                 }
                 {
                     companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center my-3'>*Please register a company first, before posting internships</p>

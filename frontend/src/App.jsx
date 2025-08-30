@@ -44,7 +44,7 @@ const appRouter = createBrowserRouter([
     element:<Browse/>
   },
   {
-    path: "browse/description/:id",
+    path: "/description/:id",
     element:<InternshipDescription/>
   },
   {

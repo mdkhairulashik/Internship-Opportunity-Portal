@@ -45,7 +45,7 @@ export const InternshipDescription = () => {
                 const res = await axios.get(`${INTERNSHIP_API_END_POINT}/get/${internshipId}`,{withCredentials:true});
                 if (res.data.success){
                     dispatch(setSingleInternship(res.data.internship));
-                    setIsApplied(res.data.internship.applications.some(application=>application.applicant == user?._id)) //Ensure the state is in sync with fetched data
+                    setIsApplied(res.data.internship.applications.some(application=>application.applicant === user?._id)) //Ensure the state is in sync with fetched data
 
 
                 }
