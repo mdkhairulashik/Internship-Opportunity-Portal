@@ -20,7 +20,7 @@ export const Browse = () => {
     <div>
         <Navbar/>
         <div className='max-w-7xl mx-auto my-10'>
-            <h4 className='font-bold text-xl my-10'>Search Results ({allInternships.length})</h4>
+            <h4 className='font-bold text-xl my-10'> Search Results ({allInternships.length})</h4>
             <div className='grid grid-cols-3 gap-4'>
                 {
                 allInternships.map((internship)=>{
