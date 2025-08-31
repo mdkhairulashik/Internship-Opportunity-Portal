@@ -17,7 +17,7 @@ export const Internships = () => {
                 internship.location.toLowerCase().includes(searchedQuery.toLowerCase()) 
 
             })
-            setFilterInternships(filterInternships)
+            setFilterInternships(filteredInternships)
         } else{
             setFilterInternships(allInternships)
         }
@@ -35,11 +35,11 @@ export const Internships = () => {
                 </div>
                 
             {
-                setFilterInternships.length <= 0 ? <span>Internship not found</span>:(
+                filterInternships.length <= 0 ? <span>Internship not found</span>:(
                     <div className='flex-1 h-[88vh] overflow-y-auto pb-5'>
                         <div className='grid grid-cols-3 gap-4'>
                             {
-                                allInternships.map((internship)=>(
+                                filterInternships.map((internship)=>(
                                     <motion.div 
                                     initial={{opacity:0,x:100}}
                                     animate={{opacity:1,x:0}}

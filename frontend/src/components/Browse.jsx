@@ -3,12 +3,12 @@ import Navbar from './shared/Navbar'
 import Internship from './Internship';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchedQuery } from '@/redux/internshipSlice';
-import useGetAllAdminInternships from '@/hooks/useGetAllAdminInternships';
+import useGetAllInternships from '@/hooks/useGetAllInternships';
 
 // const randomInternships =[1,2,3,4,5,6,7,8,9];
 
 export const Browse = () => {
-    useGetAllAdminInternships();
+    useGetAllInternships();
     const {allInternships} = useSelector(store => store.internship);
     const dispatch = useDispatch();
     useEffect(() => {
